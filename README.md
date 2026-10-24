@@ -33,6 +33,12 @@ npm run start
 
 The backend initializes a local SQLite database from the preserved source snapshots. Database files and environment files are ignored by Git. Running the app locally does not remove SteamDB's source-access restrictions.
 
+## Continuous integration
+
+[GitHub Actions](https://github.com/cmdgns/underradar-steam-hidden-gem-tracker/actions) runs the **TypeScript and build** workflow on pushes to any branch, pull requests, and manual dispatch. It uses Node.js 22 on Ubuntu and runs `npm ci`, `npm run check`, and `npm run build` from `app/`.
+
+The workflow uses the committed lockfile, caches npm downloads, has read-only repository permissions, and pins its actions to specific commits. It does not deploy the app, run a collector, require custom secrets, or change branch-protection rules.
+
 ## Current baseline
 
 The tracker has eight curated October 2026 releases and demos, sortable player/review/price/velocity metrics, adjacent genre and current-player filters, search, a session watchlist, up-to-three-game comparison, source detail dialogs, and filtered CSV export. It is a curated cohort, not a complete October release catalog.

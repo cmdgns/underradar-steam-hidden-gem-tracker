@@ -12,6 +12,14 @@ The user authorized placing this Project's app source and maintenance documentat
 
 Project files and GitHub are separate stores. The initial upload is a source-and-documentation snapshot, not an automatic synchronization service. For future maintenance, preserve the Project version, update the existing GitHub repository through a separate working clone, and verify the pushed commit. Never add a GitHub remote to or mutate Git history inside the platform-managed Project checkout.
 
+## GitHub Actions CI
+
+The user authorized automated TypeScript and production-build checks on future pushes. `.github/workflows/ci.yml` defines **TypeScript and build** for pushes to every branch, pull requests, and optional manual dispatch.
+
+The single Ubuntu job runs Node.js 22, installs dependencies with `npm ci`, checks TypeScript with `npm run check`, and builds the frontend and backend with `npm run build`, all from `app/`. Dependencies are cached against `app/package-lock.json`; the checkout and setup-node actions use verified commit pins. Read-only `contents` permission, disabled persisted checkout credentials, a 15-minute job limit, and same-ref concurrency cancellation keep the scope narrow.
+
+No automated deployment, SteamDB collection, custom secrets, or mandatory branch protection was configured. Change the workflow deliberately when app paths, scripts, or Node requirements change, and preserve the updated workflow in both this Project and the existing GitHub repository.
+
 ## Implementation baseline
 
 - **Frontend:** React, TypeScript, Vite, TanStack Query, Lucide icons, custom responsive CSS, and Satoshi typography.
