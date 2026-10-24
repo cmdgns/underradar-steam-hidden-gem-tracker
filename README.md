@@ -11,7 +11,7 @@ UnderRadar is a completed, deployed Steam discovery tracker. This Project is the
 - **Origin session context UUID:** `e8d68017-acea-424b-9c5b-a186bf4c892e`
 - **Preserved source:** `app/`
 - **Maintenance and extension brief:** [MAINTENANCE.md](MAINTENANCE.md)
-- **Private GitHub repository:** https://github.com/cmdgns/underradar-steam-hidden-gem-tracker
+- **Public GitHub repository:** https://github.com/cmdgns/underradar-steam-hidden-gem-tracker
 
 ## Local development
 
@@ -38,6 +38,10 @@ The backend initializes a local SQLite database from the preserved source snapsh
 [GitHub Actions](https://github.com/cmdgns/underradar-steam-hidden-gem-tracker/actions) runs the **TypeScript and build** workflow on pushes to any branch, pull requests, and manual dispatch. It uses Node.js 22 on Ubuntu and runs `npm ci`, `npm run check`, and `npm run build` from `app/`.
 
 The workflow uses the committed lockfile, caches npm downloads, has read-only repository permissions, and pins its actions to specific commits. It does not deploy the app, run a collector, require custom secrets, or change branch-protection rules.
+
+The repository was made public at the user's request after private-repository runs were blocked by an account payment or spending-limit error. Standard GitHub-hosted runners are free for public repositories, according to [GitHub Actions billing documentation](https://docs.github.com/en/billing/concepts/product-billing/github-actions); larger runners and storage have separate rules. No account payment settings or spending limits were changed.
+
+The first [public-repository test job](https://github.com/cmdgns/underradar-steam-hidden-gem-tracker/actions/runs/40046341192/job/120728834645) was also blocked before any steps ran. GitHub's annotation states: “The job was not started because your account is locked due to a billing issue.” Remote CI is not verified as passing; the owner must resolve the account lock before rerunning.
 
 ## Current baseline
 

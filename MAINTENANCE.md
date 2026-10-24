@@ -4,11 +4,13 @@
 
 Maintain and extend the existing Steam hidden-gem tracker in this Perplexity Project. Preserve the existing app identity and its evidence-first distinction between observed activity and measured growth.
 
-No particular new feature, unattended collection schedule, public publication, account login, or third-party access change has been requested yet. The backlog below is a proposed order of work, not a set of user-approved product decisions.
+The user has authorized publishing the GitHub source repository and adding push/PR build checks. No particular new app feature, unattended data-collection schedule, account login, public Perplexity Project, or permanent app publication has been requested. The backlog below is a proposed order of work, not a set of user-approved product decisions.
 
-## Private GitHub repository
+## Public GitHub repository
 
-The user authorized placing this Project's app source and maintenance documentation in a private GitHub repository: https://github.com/cmdgns/underradar-steam-hidden-gem-tracker. Verify that its visibility remains private before uploading future changes; do not make it public or add collaborators without authorization.
+The user initially requested a private GitHub repository, then explicitly authorized making that same repository public to use standard public-repository GitHub Actions runners: https://github.com/cmdgns/underradar-steam-hidden-gem-tracker. The repository is now public. Do not restore its former private visibility or add collaborators without a new instruction.
+
+The source, documentation, and commit history are publicly readable. Continue checking all uploaded changes for credentials, private runtime data, and accidental personal information. Publishing this GitHub repository does not change the Perplexity Project's access or permanently publish the app.
 
 Project files and GitHub are separate stores. The initial upload is a source-and-documentation snapshot, not an automatic synchronization service. For future maintenance, preserve the Project version, update the existing GitHub repository through a separate working clone, and verify the pushed commit. Never add a GitHub remote to or mutate Git history inside the platform-managed Project checkout.
 
@@ -19,6 +21,10 @@ The user authorized automated TypeScript and production-build checks on future p
 The single Ubuntu job runs Node.js 22, installs dependencies with `npm ci`, checks TypeScript with `npm run check`, and builds the frontend and backend with `npm run build`, all from `app/`. Dependencies are cached against `app/package-lock.json`; the checkout and setup-node actions use verified commit pins. Read-only `contents` permission, disabled persisted checkout credentials, a 15-minute job limit, and same-ref concurrency cancellation keep the scope narrow.
 
 No automated deployment, SteamDB collection, custom secrets, or mandatory branch protection was configured. Change the workflow deliberately when app paths, scripts, or Node requirements change, and preserve the updated workflow in both this Project and the existing GitHub repository.
+
+The first private-repository runs were blocked before jobs started. The user supplied GitHub's error: recent account payments had failed or the spending limit needed to be increased. The authorized remedy was making this repository public and rerunning the existing standard `ubuntu-latest` workflow; no payment method or spending limit was changed. See `CI_STATUS.md` in Project files for current verification results.
+
+The first public-repository run created a job but GitHub rejected it before assigning a runner or running any steps. Its check annotation explicitly states that the account is locked due to a billing issue. Public visibility did not clear the account lock. Preserve the user's public-repository preference, do not alter billing or attempt payments without authorization, and rerun CI only after the owner has resolved the lock.
 
 ## Implementation baseline
 
